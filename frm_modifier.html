@@ -1,0 +1,30 @@
+<?php 
+require_once './Materiel.php';
+//Récupération du paramètre id envoyé par la méthode get (via le lien)
+$id = $_GET['id'];
+
+//Récupération de l’objet materiel en utilisant la méthode statique getEtudiantById($id)
+$objMateriel = Materiel::getMaterielById($id);
+?>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+    </head>
+    <body>
+        <form method="post" action="frm_modifier_action.php">
+            Nom <input type="text" name="nom" value="<?php echo $objMateriel->getnom(); ?>">
+            <br>
+            Marque <input type="text" name="marque" value="<?php echo $objMateriel->getmarque(); ?>">
+            <br>
+             Fonction <input type="text" name="fonction" value="<?php echo $objMateriel->getfonction(); ?>">
+            <br>
+            
+            <!--N’oublier pas d’inclure l’id dans le formulaire (type hidden pour ne pas afficher l’id)-->
+            <input type="hidden" name="id" value="<?php echo $objMateriel->getid(); ?>">
+            <input type="submit" value="Modifier">
+            <input type="reset" value="Annuler">
+        </form>
+    </body>
+</html>
